@@ -1,8 +1,11 @@
 # 🍕 Pizza Predictor - Decision Tree Classifier
 
-A sleek and interactive web application that uses a Decision Tree machine learning model to predict whether you should eat pizza based on your hunger level and the day of the week.
+A sleek and interactive web application that uses a Decision Tree machine learning model to predict whether you should eat pizza based on your hunger level and the day of the week. Built with Flask, featuring a professional glassmorphic UI with stunning animations.
 
-![Pizza Predictor](static/images/pizza_slice.png)
+![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
+![Flask](https://img.shields.io/badge/Flask-3.0.0-green.svg)
+![ML](https://img.shields.io/badge/ML-Decision%20Tree-orange.svg)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-1.3.2-red.svg)
 
 ## 🎯 Project Overview
 
