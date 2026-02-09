@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 import pickle
-import pandas as pd
+import numpy as np
 
 app = Flask(__name__)
 
@@ -22,9 +22,8 @@ def predict():
     hungry_val = 1 if hungry == 'Yes' else 0
     weekend_val = 1 if weekend == 'Yes' else 0
     
-    # Create DataFrame for prediction
-    input_data = pd.DataFrame([[hungry_val, weekend_val]], 
-                             columns=['Am_I_Hungry', 'Is_It_Weekend'])
+    # Create numpy array for prediction
+    input_data = np.array([[hungry_val, weekend_val]])
     
     # Make prediction
     prediction = model.predict(input_data)[0]
