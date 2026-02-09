@@ -1,0 +1,38 @@
+from flask import Flask, render_template, request
+import pickle
+import pandas as pd
+
+app = Flask(__name__)
+
+# Load the trained model
+with open('decision_tree_model.pkl', 'rb') as f:
+    model = pickle.load(f)
+
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+@app.route('/predict', methods=['POST'])
+def predict():
+    # Get form data
+    hungry = request.form.get('hungry')
+    weekend = request.form.get('weekend')
+    
+    # Convert to numeric (Yes=1, No=0)
+    hungry_val = 1 if hungry == 'Yes' else 0
+    weekend_val = 1 if weekend == 'Yes' else 0
+    
+    # Create DataFrame for prediction
+    input_data = pd.DataFrame([[hungry_val, weekend_val]], 
+                             columns=['Am_I_Hungry', 'Is_It_Weekend'])
+    
+    # Make prediction
+    prediction = model.predict(input_data)[0]
+    
+    # Convert back to Yes/No
+    result = "Yes, you should eat pizza! 🍕" if prediction == 1 else "No, maybe skip the pizza this time."
+    
+    return render_template('index.html', prediction=result)
+
+if __name__ == '__main__':
+    app.run(debug=True, port=5000)
